@@ -9,72 +9,69 @@ export class BoardComponent implements OnInit {
 
   readonly width /* = [,,,,,,,,,,]; */
   readonly height /* = [,,,,,,,,,,]; */
-  randomDemon:any;
-  mario:number;
-  count:number = 0;
+  randomDemon: any;
+  mario: number;
+  count: number = 0;
   constructor() {
     let width = this.get('Please enter board width:');
-    if(width)this.width = new Array(width);
+    if (width) this.width = new Array(width);
 
     let height = this.get('Please enter board height:');
-    if(height)this.height = new Array(height);
+    if (height) this.height = new Array(height);
 
-   }
+  }
 
   ngOnInit() {
-
-    this.randomDemon = Array.from({length: 5}, () => Math.floor(Math.random() * (this.width.length*this.height.length)));
-    this.mario = Math.floor((this.width.length * this.height.length)/2);
-    console.log(this.mario);
-    document.getElementById('board').click();
+    if(this.height && this.width){
+      this.randomDemon = Array.from({ length: 5 }, () => Math.floor(Math.random() * (this.width.length * this.height.length)));
+      this.mario = Math.floor((this.width.length * this.height.length) / 2);
+      console.log(this.mario);
+    }
   }
 
-  eventHandler(keycode){
-    console.log(keycode);
-
-  }
-
-  handleKeyEvent(keycode,keyname){
+  handleKeyEvent(keycode, keyname) {
     switch (keyname) {
       case 'Arrow Left':
-      if(this.mario > 0)this.mario--;this.count++
+        if (this.mario > 0) this.mario--; this.count++
         break;
       case 'Arrow Up':
-          if(this.mario > 0)this.mario = this.mario - 10;this.count++
-      break;
+        if (this.mario > 0) this.mario = this.mario - 10; this.count++
+        break;
       case 'Arrow Right':
-      if(this.mario < (this.width.length*this.height.length)-1)this.mario++;this.count++
-      break;
+        if (this.mario < (this.width.length * this.height.length) - 1) this.mario++; this.count++
+        break;
       case 'Arrow Down':
-      if(this.mario < ((this.width.length*this.height.length)-10))this.mario = this.mario + 10;this.count++
-      break;
+        if (this.mario < ((this.width.length * this.height.length) - 10)) this.mario = this.mario + 10; this.count++
+        break;
 
-    
+
       default:
         break;
     }
     this.randomDemon = this.eatFood();
-    if(this.randomDemon.length == 0){
-      alert('Game over. Total moves to save princess:'+this.count);
+    if (this.randomDemon.length == 0) {
+      alert('Game over. Total moves to save princess:' + this.count);
     }
-    
+
   }
 
   /**
    * eat food
    */
-  eatFood(){
+  eatFood() {
     let avlblFood = this.randomDemon;
     return avlblFood.filter(e => e != this.mario)
   }
 
-   get(msg) {
-     let value;
-     value = prompt(msg, "10");
+  /**get the square box width and height */
+  get(msg) {
+    let value;
+    value = prompt(msg, "10");
     if (value == null || value == "") {
-      value = "User cancelled the prompt.";
+      value = prompt(msg, "10");
     } else {
-       return parseInt(value);
+      return parseInt(value);
     }
   }
+
 }

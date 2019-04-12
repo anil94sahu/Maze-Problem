@@ -1,16 +1,19 @@
 <p>
   board works!
 </p>
-please click on board and start play..
+<div class="container">
+  please click on board and start play..
+</div>
 <button id = "board"  (keydown.ArrowLeft)="handleKeyEvent( $event, 'Arrow Left' )"
 (keydown.ArrowUp)="handleKeyEvent( $event, 'Arrow Up' )"
 (keydown.ArrowRight)="handleKeyEvent( $event, 'Arrow Right' )"
 (keydown.ArrowDown)="handleKeyEvent( $event, 'Arrow Down' )">
   <div  class="board">
-    <div *ngFor = "let width of width;let i = index">
-      <div *ngFor = "let height of height;let j = index">
+    <div *ngFor = "let item1 of width;let i = index">
+      <div *ngFor = "let item2 of height;let j = index">
         <div class="square">
          <!--  {{j}}{{i}} -->
+         <!-- {{j*width.length + i}} -->
           <img *ngIf = "randomDemon.includes(j*10 + i)" class="imgSize" src="../../assets//image/food.jpg" alt="">
           <!-- {{mario}}{{i*j}} -->
           <button *ngIf = "mario == (j*10 + i)" type="text" class="imgSize" 
