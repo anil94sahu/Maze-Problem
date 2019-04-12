@@ -1,0 +1,19 @@
+.square {
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    overflow: hidden;
+  }
+
+
+  .board {
+    display: flex;
+  }
+
+
+  .imgSize {
+    width: 50px;
+    height: 50px;
+    margin-top: -30%;
+    position: relative;
+  }
