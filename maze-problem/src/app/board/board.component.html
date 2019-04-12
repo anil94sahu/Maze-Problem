@@ -10,7 +10,7 @@ please click on board and start play..
     <div *ngFor = "let width of width;let i = index">
       <div *ngFor = "let height of height;let j = index">
         <div class="square">
-          {{j}}{{i}}
+         <!--  {{j}}{{i}} -->
           <img *ngIf = "randomDemon.includes(j*10 + i)" class="imgSize" src="../../assets//image/food.jpg" alt="">
           <!-- {{mario}}{{i*j}} -->
           <button *ngIf = "mario == (j*10 + i)" type="text" class="imgSize" 

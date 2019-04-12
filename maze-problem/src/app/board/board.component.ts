@@ -11,6 +11,7 @@ export class BoardComponent implements OnInit {
   readonly height /* = [,,,,,,,,,,]; */
   randomDemon:any;
   mario:number;
+  count:number = 0;
   constructor() {
     let width = this.get('Please enter board width:');
     if(width)this.width = new Array(width);
@@ -36,16 +37,16 @@ export class BoardComponent implements OnInit {
   handleKeyEvent(keycode,keyname){
     switch (keyname) {
       case 'Arrow Left':
-      if(this.mario > 0)this.mario--;
+      if(this.mario > 0)this.mario--;this.count++
         break;
       case 'Arrow Up':
-          if(this.mario > 0)this.mario = this.mario - 10;
+          if(this.mario > 0)this.mario = this.mario - 10;this.count++
       break;
       case 'Arrow Right':
-      if(this.mario < (this.width.length*this.height.length)-1)this.mario++
+      if(this.mario < (this.width.length*this.height.length)-1)this.mario++;this.count++
       break;
       case 'Arrow Down':
-      if(this.mario < ((this.width.length*this.height.length)-10))this.mario = this.mario + 10;
+      if(this.mario < ((this.width.length*this.height.length)-10))this.mario = this.mario + 10;this.count++
       break;
 
     
@@ -54,7 +55,7 @@ export class BoardComponent implements OnInit {
     }
     this.randomDemon = this.eatFood();
     if(this.randomDemon.length == 0){
-      alert('congratulation you win');
+      alert('Game over. Total moves to save princess:'+this.count);
     }
     
   }
